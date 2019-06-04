@@ -8,7 +8,7 @@ interface User {
 }
 
 interface Context {
-  currentUser: { name: string };
+  currentUser: User;
 }
 
 const UserType = new GraphQLObjectType({
