@@ -1,4 +1,4 @@
-# Graphql Azure functions test
+# azure-functions-node-graphql-starter
 
 ```
 npm install
