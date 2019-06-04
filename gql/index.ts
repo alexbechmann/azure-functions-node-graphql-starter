@@ -1,7 +1,8 @@
 import { createHandler } from 'azure-function-express';
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
-import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
+import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql';
+import { getGraphQLQueryArgs, getMongoDbQueryResolver, getMongoDbFilter } from 'graphql-to-mongodb';
 
 interface User {
   name: string;
@@ -38,6 +39,27 @@ const query = new GraphQLObjectType({
     getCurrentUser: {
       type: UserType,
       resolve: (source, args, context: Context) => context.currentUser
+    },
+    getAllUsers: {
+      type: new GraphQLList(UserType),
+      args: getGraphQLQueryArgs(UserType),
+      resolve: getMongoDbQueryResolver(UserType, async (filter, projection, options, obj, args) => {
+        console.log({ filter, options });
+        // return mongooseModel
+        // .findOne(filter})
+        // .sort(options.sort)
+        // .limit(options.limit || defaultLimit)
+        // .skip(options.skip);
+        const users: User[] = [
+          {
+            name: 'User1'
+          },
+          {
+            name: 'User2'
+          }
+        ];
+        return users;
+      })
     }
   })
 });
