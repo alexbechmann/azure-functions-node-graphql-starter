@@ -14,7 +14,11 @@ interface Context {
 const UserType = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
-    name: { type: GraphQLString }
+    name: { type: GraphQLString },
+    upperCaseName: {
+      type: GraphQLString,
+      resolve: source => source.name.toUpperCase()
+    }
   })
 });
 
