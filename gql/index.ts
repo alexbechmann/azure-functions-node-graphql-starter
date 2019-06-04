@@ -3,9 +3,11 @@ import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql';
 import { getGraphQLQueryArgs, getMongoDbQueryResolver, getMongoDbFilter } from 'graphql-to-mongodb';
+import { GraphQLDateTime } from 'graphql-iso-date';
 
 interface User {
   name: string;
+  dateOfBirth: Date;
 }
 
 interface Context {
@@ -16,6 +18,7 @@ const UserType = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
     name: { type: GraphQLString },
+    dateOfBirth: { type: GraphQLDateTime },
     upperCaseName: {
       type: GraphQLString,
       resolve: source => source.name.toUpperCase()
@@ -52,10 +55,12 @@ const query = new GraphQLObjectType({
         // .skip(options.skip);
         const users: User[] = [
           {
-            name: 'User1'
+            name: 'User1',
+            dateOfBirth: new Date(2000, 1, 1)
           },
           {
-            name: 'User2'
+            name: 'User2',
+            dateOfBirth: new Date(1995, 1, 1)
           }
         ];
         return users;
@@ -91,7 +96,8 @@ app.use(
   graphqlHTTP((req, res) => {
     const context: Context = {
       currentUser: {
-        name: 'User1' // can access req and extract token
+        name: 'User1', // can access req and extract token
+        dateOfBirth: new Date(2000, 1, 1)
       }
     };
     return {
