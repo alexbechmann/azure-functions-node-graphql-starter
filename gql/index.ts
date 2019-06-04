@@ -48,7 +48,7 @@ const query = new GraphQLObjectType({
         // return mongooseModel
         // .findOne(filter})
         // .sort(options.sort)
-        // .limit(options.limit || defaultLimit)
+        // .limit(options.limit || 10)
         // .skip(options.skip);
         const users: User[] = [
           {
