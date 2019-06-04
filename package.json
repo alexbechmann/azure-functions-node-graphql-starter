@@ -10,7 +10,8 @@
     "functions:build:production": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "functions:build": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "functions:watch": "cross-env NODE_ENV=development webpack --config webpack.config.js -w",
-    "prestart": "func extensions install && npm run functions:build"
+    "prestart": "func extensions install && npm run functions:build",
+    "function:new": "func new"
   },
   "author": "",
   "license": "ISC",
