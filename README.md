@@ -21,8 +21,22 @@ Paste this into query on GraphiQL dashboard.
     dateOfBirth
     upperCaseName
   }
+
+  getTestValue
 }
 ```
+
+## Sample mutation
+
+Paste this into query on GraphiQL dashboard.
+
+```
+mutation {
+  updateTestValue(newValue: "new value")
+}
+```
+
+Re-run first sample query and see updated value for "getTestValue"
 
 ## Create function
 ```
