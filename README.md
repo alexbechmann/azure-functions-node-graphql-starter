@@ -15,6 +15,12 @@ Paste this into query on GraphiQL dashboard.
 ```graphql
 {
   hello
+
+  getCurrentUser {
+    name
+    dateOfBirth
+    upperCaseName
+  }
 }
 ```
 
