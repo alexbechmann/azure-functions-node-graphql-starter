@@ -9,6 +9,15 @@ npm start
 
 GraphiQL dashboard: <http://localhost:7072/api/gql>
 
+## Sample query
+Paste this into query on GraphiQL dashboard.
+
+```graphql
+{
+  hello
+}
+```
+
 ## Create function
 ```
 npm run function:new
